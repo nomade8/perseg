@@ -64,9 +64,9 @@ try {
     console.warn('Não foi possível carregar shot_gun.mp3:', e);
 }
 try {
-    explosionMetallicAudio = new Audio('explosion_loud.mp3');
+    explosionMetallicAudio = new Audio('dry_explosion.mp3');
     explosionMetallicAudio.preload = 'auto';
-    explosionMetallicAudio.volume = 0.7;
+    explosionMetallicAudio.volume = 0.6;
 } catch (e) {
     console.warn('Não foi possível carregar explosion_metalic.mp3:', e);
 }
