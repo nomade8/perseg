@@ -66,7 +66,7 @@ try {
 try {
     explosionMetallicAudio = new Audio('dry_explosion.mp3');
     explosionMetallicAudio.preload = 'auto';
-    explosionMetallicAudio.volume = 0.6;
+    explosionMetallicAudio.volume = 0.2;
 } catch (e) {
     console.warn('Não foi possível carregar explosion_metalic.mp3:', e);
 }
