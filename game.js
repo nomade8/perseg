@@ -198,12 +198,12 @@ init();
 // Adicionar iluminação à cena
 function adicionarIluminacao() {
     // Luz ambiente mais escura e avermelhada para o pôr do sol
-    const luzAmbiente = new THREE.AmbientLight(0x443322, 0.8);
+    const luzAmbiente = new THREE.AmbientLight(0x443322, 1);
     luzAmbiente.autoUpdate = false;
     scene.add(luzAmbiente);
 
     // Luz hemisférica para um gradiente de pôr do sol (laranja/roxo)
-    const hemiLight = new THREE.HemisphereLight(0xff7f00, 0x4a004a, 0.6); // Laranja do sol, roxo do crepúsculo
+    const hemiLight = new THREE.HemisphereLight(0xff7f00, 0x4a004a, 0.8); // Laranja do sol, roxo do crepúsculo
     hemiLight.autoUpdate = false;
     scene.add(hemiLight);
     
