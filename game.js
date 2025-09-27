@@ -551,6 +551,14 @@ function removerNaveByIndex(index, destroyed = false) {
         const pontosPorNave = CONFIG.pontosPorNave || 2000;
         pontuacao += pontosPorNave;
         console.log('[nave destruida] pontos:', pontosPorNave);
+        // Bônus: dar 20% da vida máxima do jogador ao destruir uma nave
+        try {
+            const bonusVida = (CONFIG.vidaMaximaJogador || 100) * 0.20; // 20%
+            vidaJogador = (typeof vidaJogador === 'number' ? vidaJogador : 0) + bonusVida;
+            // Não ultrapassar vida máxima
+            vidaJogador = Math.min(vidaJogador, CONFIG.vidaMaximaJogador);
+            console.log('[nave destruida] bônus de vida:', bonusVida, 'vida atual:', vidaJogador);
+        } catch (e) { console.warn('Erro ao aplicar bonus de vida:', e); }
     }
     // remover mesh e array
     try { scene.remove(nave.mesh); } catch (e) {}
