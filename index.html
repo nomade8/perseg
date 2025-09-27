@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Tiro - Three.js</title>
+    <style>
+        body { margin: 0; overflow: hidden; background-color: #000; }
+        canvas { display: block; }
+        #info {
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-radius: 5px;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        #crosshair {
+            position: fixed; /* Keep it fixed relative to the viewport */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the element */
+            width: 20px; /* Size of the crosshair */
+            height: 20px;
+            border: 1px solid grey; /* Simple white square */
+            border-radius: 50%; /* Make it a circle */
+            pointer-events: none; /* Prevent it from blocking clicks/events on the canvas */
+            z-index: 10; /* Ensure it's drawn on top of the canvas */
+        }
+        #health-bar {
+    width: 200px;
+    height: 20px;
+    background-color: #ddd;
+    border: 1px solid #000;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+#health-fill {
+    height: 100%;
+    background-color: green;
+}
+        /* Overlay de fim de fase */
+        #level-complete {
+            position: absolute;
+            inset: 0;
+            display: none;
+            align-items: flex-start; /* não centralizar verticalmente */
+            padding-top: 80px; /* empurra o painel um pouco para cima */
+            justify-content: center;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+        }
+        #level-complete .panel {
+            background: linear-gradient(180deg,#222 0%, #111 100%);
+            color: white;
+            padding: 24px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+            min-width: 300px;
+           
+        }
+        #level-complete button {
+            margin-top: 16px;
+            padding: 10px 18px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            background: #2ecc71;
+            color: #012;
+            cursor: pointer;
+        }
+        #level-complete button:hover { filter: brightness(0.95); }
+    </style>
+</head>
+<body>
+    <div id="info">Use as setas para mover, mouse para mirar, clique para atirar, tecla 'V' para alternar câmeras</div>
+    <div id="health-bar">
+        <div id="health-fill"></div>
+    </div>
+    <div id="crosshair"></div>
+    <!-- Overlay exibido quando a fase termina -->
+    <div id="level-complete" aria-hidden="true">
+        <div class="panel">
+            <h2 id="level-complete-title">Fase Concluída!</h2>
+            <p id="level-complete-score">Você fez 0 pontos</p>
+            <!-- Botão desabilitado: usar ENTER para iniciar próxima fase para evitar cliques acidentais -->
+            <button id="next-level-btn" disabled>Pressione ENTER para iniciar próxima fase</button>
+        </div>
+    </div>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+    <script type="module" src="./js/game.js"></script>
+</body>
+</html>
